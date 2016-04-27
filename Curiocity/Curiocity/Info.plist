@@ -40,6 +40,10 @@
 			<false/>
 		</dict>
 	</dict>
+	<key>client_id</key>
+	<string>sjeC1GfOjoOlJ0MaC35xVYI0Vq6GRAqB</string>
+	<key>client_secret</key>
+	<string>oG6CHeMmprvaFmFi</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        UISearchBar.appearance().barTintColor = UIColor.turquoiseColor()
+        UISearchBar.appearance().tintColor = UIColor.whiteColor()
+        UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.turquoiseColor()
         return true
     }
 
@@ -42,5 +45,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+extension UIColor {
+    static func turquoiseColor() -> UIColor {
+        return UIColor(red: 69.0/255.0, green: 221.0/255.0, blue: 236.0/255.0, alpha: 1.0)
+    }
 }
 

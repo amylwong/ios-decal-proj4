@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		E178185B1CCF677C002A3D69 /* DestinationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178185A1CCF677C002A3D69 /* DestinationsViewController.swift */; };
 		E178185D1CCF67A0002A3D69 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178185C1CCF67A0002A3D69 /* MapViewController.swift */; };
+		E17818601CD044DF002A3D69 /* ExpediaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178185F1CD044DF002A3D69 /* ExpediaAPI.swift */; };
+		E17818631CD049BE002A3D69 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17818621CD049BE002A3D69 /* Utils.swift */; };
+		E17818651CD0A1C2002A3D69 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17818641CD0A1C2002A3D69 /* City.swift */; };
+		E17818671CD0AD27002A3D69 /* CityDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17818661CD0AD27002A3D69 /* CityDetailViewController.swift */; };
 		E1D177E71CCD92CD00422EA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D177E61CCD92CD00422EA5 /* AppDelegate.swift */; };
 		E1D177E91CCD92CD00422EA5 /* CitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D177E81CCD92CD00422EA5 /* CitiesViewController.swift */; };
 		E1D177EB1CCD92CD00422EA5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D177EA1CCD92CD00422EA5 /* SearchViewController.swift */; };
@@ -31,6 +35,10 @@
 /* Begin PBXFileReference section */
 		E178185A1CCF677C002A3D69 /* DestinationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DestinationsViewController.swift; sourceTree = "<group>"; };
 		E178185C1CCF67A0002A3D69 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		E178185F1CD044DF002A3D69 /* ExpediaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpediaAPI.swift; sourceTree = "<group>"; };
+		E17818621CD049BE002A3D69 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		E17818641CD0A1C2002A3D69 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		E17818661CD0AD27002A3D69 /* CityDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityDetailViewController.swift; sourceTree = "<group>"; };
 		E1D177E31CCD92CD00422EA5 /* Curiocity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Curiocity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1D177E61CCD92CD00422EA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1D177E81CCD92CD00422EA5 /* CitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +70,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E178185E1CD044CA002A3D69 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E178185F1CD044DF002A3D69 /* ExpediaAPI.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		E17818611CD049A0002A3D69 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E17818621CD049BE002A3D69 /* Utils.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		E1D177DA1CCD92CD00422EA5 = {
 			isa = PBXGroup;
 			children = (
@@ -83,10 +107,14 @@
 		E1D177E51CCD92CD00422EA5 /* Curiocity */ = {
 			isa = PBXGroup;
 			children = (
+				E178185E1CD044CA002A3D69 /* API */,
 				E1D177E61CCD92CD00422EA5 /* AppDelegate.swift */,
+				E17818611CD049A0002A3D69 /* Utils */,
 				E1D177E81CCD92CD00422EA5 /* CitiesViewController.swift */,
 				E178185A1CCF677C002A3D69 /* DestinationsViewController.swift */,
 				E178185C1CCF67A0002A3D69 /* MapViewController.swift */,
+				E17818661CD0AD27002A3D69 /* CityDetailViewController.swift */,
+				E17818641CD0A1C2002A3D69 /* City.swift */,
 				E1D177EA1CCD92CD00422EA5 /* SearchViewController.swift */,
 				E1D177EC1CCD92CD00422EA5 /* Main.storyboard */,
 				E1D177EF1CCD92CE00422EA5 /* Assets.xcassets */,
@@ -209,7 +237,11 @@
 				E1D177EB1CCD92CD00422EA5 /* SearchViewController.swift in Sources */,
 				E1D177E71CCD92CD00422EA5 /* AppDelegate.swift in Sources */,
 				E178185B1CCF677C002A3D69 /* DestinationsViewController.swift in Sources */,
+				E17818631CD049BE002A3D69 /* Utils.swift in Sources */,
+				E17818671CD0AD27002A3D69 /* CityDetailViewController.swift in Sources */,
+				E17818601CD044DF002A3D69 /* ExpediaAPI.swift in Sources */,
 				E178185D1CCF67A0002A3D69 /* MapViewController.swift in Sources */,
+				E17818651CD0A1C2002A3D69 /* City.swift in Sources */,
 				E1D177E91CCD92CD00422EA5 /* CitiesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
