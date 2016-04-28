@@ -10,14 +10,52 @@ import UIKit
 
 class CitiesSavedViewController : UICollectionViewController {
     
-    private let reuseIdentifier = "CityCell"
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
-    var cityPlansSaved = ["Berkeley","Oakland","Concord"]
+    var cityPlansSaved = ["Berkeley","Oakland","Concord","San Jose","Fremont"]
     
+    
+    override func viewDidLoad() {
+        print("CitiesSavedViewController.swift")
+
+        
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let reuseIdentifier = (indexPath.item == 0) ? "AddCityCell" : "CityCell"
+        if reuseIdentifier == "AddCityCell" {
+            print("AMY")
+            tabBarController?.selectedIndex = 1
+        }
+        print("Wong")
+    }
+    
+    
+    func collectionView(collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+            let height = 100
+            return CGSizeMake(collectionView.bounds.size.width - 10, CGFloat(height))
+    }
+    
+    override func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String,atIndexPath indexPath: NSIndexPath) ->UICollectionReusableView {
+        
+        if kind == UICollectionElementKindSectionHeader {
+            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "header", forIndexPath: indexPath)
+            headerView.backgroundColor = UIColor.themeColor();
+            return headerView
+        } else {
+            return UICollectionReusableView()
+        }
+    }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CityCell", forIndexPath: indexPath) as! CityCell
-        cell.cityNameLabel.text = cityPlansSaved[indexPath.row]
+        let reuseIdentifier = (indexPath.item == 0) ? "AddCityCell" : "CityCell"
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! CityCell
+        if reuseIdentifier == "CityCell" {
+            print(cityPlansSaved[indexPath.item-1])
+            cell.cityNameLabel.text = cityPlansSaved[indexPath.item-1]
+        }
+        
         return cell
     }
     
@@ -27,7 +65,7 @@ class CitiesSavedViewController : UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        return cityPlansSaved.count
+        return cityPlansSaved.count + 1
     }
     
 }
