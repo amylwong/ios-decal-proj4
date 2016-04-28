@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  CitiesViewController.swift
 //  Curiocity
 //
 //  Created by Amy Wong on 4/24/16.
@@ -10,16 +10,16 @@ import UIKit
 
 class CitiesViewController: UITableViewController {
     
-    var cities = [City]()
+    var cities = ["Berkeley", "Oakland"]
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("CitiesViewController")
-        cities = [
-            City(name:"San Francisco"),
-        ]
+//        cities = [
+//            City(data:"San Francisco"),
+//        ]
 
     }
 
@@ -29,6 +29,14 @@ class CitiesViewController: UITableViewController {
     }
 
     
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("citySavedCell", forIndexPath: indexPath) as! CitySavedTableViewCell
+        cell.savedCityNameLabel.text = cities[indexPath.row]
+        return cell
+    }
+    
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -37,12 +45,12 @@ class CitiesViewController: UITableViewController {
         return cities.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CityCell", forIndexPath: indexPath)
-        
-        let city = cities[indexPath.row]
-        cell.textLabel!.text = city.name
-        return cell
-    }
+//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCellWithIdentifier("CityCell", forIndexPath: indexPath)
+//        
+//        let city = cities[indexPath.row]
+//        cell.textLabel!.text = city.name
+//        return cell
+//    }
 }
 

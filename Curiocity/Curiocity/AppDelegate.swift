@@ -12,10 +12,12 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let themeColor = UIColor(red: 69.0/255.0, green: 221.0/255.0, blue: 236.0/255.0, alpha: 1.0)
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        window?.tintColor = themeColor
         UISearchBar.appearance().barTintColor = UIColor.turquoiseColor()
         UISearchBar.appearance().tintColor = UIColor.whiteColor()
         UITextField.appearanceWhenContainedInInstancesOfClasses([UISearchBar.self]).tintColor = UIColor.turquoiseColor()

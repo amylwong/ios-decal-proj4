@@ -8,26 +8,41 @@
 
 import UIKit
 
-class SearchViewController: UITableViewController {
+class SearchViewController: UITableViewController, UISearchBarDelegate {
     
+    var searchActive : Bool = false
     var citySearches = [City]()
     
     var filteredCitySearches = [City]()
 
     let searchController = UISearchController(searchResultsController: nil)
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        tableView.delegate = self
+        tableView.dataSource = self
+        searchController.searchBar.delegate = self
+        
         print("SearchViewController")
-        print(Utils.getCitySearchResults("San%20Francisco"))
+//        print(Utils.getCitySearchResults("San"))
+//        let url = Utils.getCitySearchResults("San")
+//        print("data, ", data)
+        
+        
+        let api = ExpediaAPI()
+        api.loadCities(didLoadCities)
+        print("+++++++")
+        print(citySearches)
+        
         
         
         citySearches = [
-            City(name:"San Francisco"),
-            City(name:"San Jose"),
-            City(name:"San Diego"),
-            City(name:"Santa Clara")
+//            City(name:"San Francisco"),
+//            City(name:"San Jose"),
+//            City(name:"San Diego"),
+//            City(name:"Santa Clara")
         ]
         
         searchController.searchResultsUpdater = self
@@ -35,6 +50,21 @@ class SearchViewController: UITableViewController {
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
     }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        print("1")
+        print("searchText \(searchText)")
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        print("2")
+        print("searchText \(searchBar.text)")
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        print("3")
+    }
+
     
     func filterCitySearches(searchText: String, scope: String = "All") {
         filteredCitySearches = citySearches.filter { city in
@@ -84,7 +114,13 @@ class SearchViewController: UITableViewController {
 //            }
 //        }
 //    }
-
+    
+    /* Completion handler for API call. DO NOT CHANGE */
+    func didLoadCities(citySearches: [City]) {
+        self.citySearches = citySearches
+        print("HIIII", citySearches)
+        self.tableView!.reloadData()
+    }
 
 
 }
