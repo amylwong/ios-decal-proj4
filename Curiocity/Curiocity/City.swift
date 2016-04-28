@@ -14,17 +14,9 @@ class City {
     var long: Int
     
     
-//    init(name: String) {
-//        self.name = name
-//        
-//        
-//        
-//        
-//    }
-    
-    
     /* Parses a NSDictionary and creates a photo object. */
-    init (data: NSDictionary) {
+    init (name: String, lat: Int, long: Int) {
+//    init (data: NSDictionary) {
 //         FILL ME IN
         // HINT: use nested .valueForKey() calls, and then cast using 'as! TYPE'
 //        self.name = data.valueForKey("sr")!.valueForKey("count") as! Int
@@ -32,8 +24,8 @@ class City {
 //        self.username = data.valueForKey("user")!.valueForKey("username") as! String
 //        self.date = data.valueForKey("created_time") as! String
         print("City.swift")
-        self.name = "SF"
-        self.lat = 123
-        self.long = 456
+        self.name = name
+        self.lat = lat
+        self.long = long
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class SearchViewController: UITableViewController, UISearchBarDelegate {
     
+    let api = ExpediaAPI()
     var searchActive : Bool = false
     var citySearches = [City]()
     
@@ -24,22 +25,16 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         searchController.searchBar.delegate = self
-        
         print("SearchViewController")
-//        print(Utils.getCitySearchResults("San"))
-//        let url = Utils.getCitySearchResults("San")
-//        print("data, ", data)
         
-        
-        let api = ExpediaAPI()
-        api.loadCities(didLoadCities)
+//        let api = ExpediaAPI()
+//        api.loadCities(didLoadCities)
         print("+++++++")
-        print(citySearches)
-        
+        print("citySearches:", citySearches)
         
         
         citySearches = [
-//            City(name:"San Francisco"),
+            City(name: "San Francisco", lat: 234,long: 234),
 //            City(name:"San Jose"),
 //            City(name:"San Diego"),
 //            City(name:"Santa Clara")
@@ -51,9 +46,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         tableView.tableHeaderView = searchController.searchBar
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        print("1")
+    func searchBar(searchBar: UISearchBar, var textDidChange searchText: String) {
         print("searchText \(searchText)")
+        if searchText.containsString(" ") {
+            searchText = searchText.stringByReplacingOccurrencesOfString(" ", withString: "%20")
+        }
+        api.loadCities(searchText, completion: didLoadCities)
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -67,6 +65,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
 
     
     func filterCitySearches(searchText: String, scope: String = "All") {
+        print("filterCitySearches")
         filteredCitySearches = citySearches.filter { city in
             return city.name.lowercaseString.containsString(searchText.lowercaseString)
         }
