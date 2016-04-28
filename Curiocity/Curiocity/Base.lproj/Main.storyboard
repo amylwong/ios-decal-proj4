@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Cities-->
         <scene sceneID="bl7-AM-YkC">
             <objects>
                 <collectionViewController id="n3s-ME-f30" customClass="CitiesSavedViewController" customModule="Curiocity" customModuleProvider="target" sceneMemberID="viewController">
@@ -47,51 +47,11 @@
                             <outlet property="delegate" destination="n3s-ME-f30" id="gcV-hw-Fow"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Item" id="aEX-xn-2Wv"/>
+                    <tabBarItem key="tabBarItem" title="Cities" id="aEX-xn-2Wv"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zy-Sb-ZOw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="87" y="-832"/>
-        </scene>
-        <!--Cities-->
-        <scene sceneID="S2a-cE-R08">
-            <objects>
-                <tableViewController id="NKx-4E-H00" customClass="CitiesViewController" customModule="Curiocity" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="oNA-p8-Pqs">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="citySavedCell" id="ZGq-ge-Xgm" customClass="CitySavedTableViewCell" customModule="Curiocity" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZGq-ge-Xgm" id="BN4-0x-P4L" userLabel="CityCell">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2c-9x-s6q">
-                                            <rect key="frame" x="31" y="11" width="348" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="savedCityNameLabel" destination="B2c-9x-s6q" id="QC3-nw-fXO"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="NKx-4E-H00" id="6jM-Se-jPl"/>
-                            <outlet property="delegate" destination="NKx-4E-H00" id="M1Q-N6-lSd"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Cities" id="acj-DB-4fV"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3s9-hg-txU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="738" y="-638"/>
+            <point key="canvasLocation" x="647" y="-442"/>
         </scene>
         <!--Search-->
         <scene sceneID="Xr8-4q-fti">
@@ -212,11 +172,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="NKx-4E-H00" kind="relationship" relationship="viewControllers" id="AH0-ko-mhz"/>
+                        <segue destination="n3s-ME-f30" kind="relationship" relationship="viewControllers" id="3NM-8v-LQw"/>
                         <segue destination="TGy-Hv-UbE" kind="relationship" relationship="viewControllers" id="e1C-jJ-k97"/>
                         <segue destination="ktQ-si-8Fv" kind="relationship" relationship="viewControllers" id="qji-cy-E8R"/>
                         <segue destination="aUL-fr-swN" kind="relationship" relationship="viewControllers" id="TSv-EN-riP"/>
-                        <segue destination="n3s-ME-f30" kind="relationship" relationship="viewControllers" id="3NM-8v-LQw"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
