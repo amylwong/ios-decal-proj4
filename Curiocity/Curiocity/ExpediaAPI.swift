@@ -32,14 +32,9 @@ class ExpediaAPI {
                         return
                     }
                     let arr = feedDictionary.valueForKey("sr") as! NSArray
-                    print("arr,",arr)
                     for dict in arr {
                         if dict.valueForKey("t") as! String == "CITY" {
-                            print(dict.valueForKey("d"))
-                            let name = dict.valueForKey("d") as! String
-                            let lat = 34
-                            let long = 122
-                            cities.append(City(name: name, lat: lat, long: long))
+                            cities.append(City(dict: dict as! NSDictionary))
                         }
                     }
                     

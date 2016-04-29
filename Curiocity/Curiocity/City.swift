@@ -9,14 +9,27 @@
 import Foundation
 
 class City {
-    var name: NSMutableAttributedString
-    var lat: Int
-    var long: Int
+    var name: String
+    var lat: String
+    var long: String
     
     /* Parses a NSDictionary and creates a photo object. */
-    init (name: NSMutableAttributedString, lat: Int, long: Int) {
-        self.name = name
-        self.lat = lat
-        self.long = long
+//    init (name: String, lat: String, long: String) {
+    init (dict: NSDictionary) {
+        lat = dict.valueForKey("ll")!.valueForKey("lat") as! String
+        long = dict.valueForKey("ll")!.valueForKey("lat") as! String
+        name = dict.valueForKey("d") as! String
+        name = self.parseCityName(name)
+    }
+    
+    func parseCityName(name: String) ->String{
+        var parsedStr = name
+        if parsedStr.containsString("<B>") {
+            parsedStr = parsedStr.stringByReplacingOccurrencesOfString("<B>", withString: "")
+        }
+        if parsedStr.containsString("</B>") {
+            parsedStr = parsedStr.stringByReplacingOccurrencesOfString("</B>", withString: "")
+        }
+        return parsedStr
     }
 }
