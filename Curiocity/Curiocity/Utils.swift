@@ -18,7 +18,8 @@ class Utils {
     
     class func getCitySearchResults(city: String) -> NSURL {
         let cid = clientID()
-        let urlStr = "http://terminal2.expedia.com/x/suggestions/regions?query=\(city)&apikey=\(cid)"
+        let urlStr = "http://terminal2.expedia.com:80/x/suggestions/regions?query=\(city)&apikey=\(cid)"
+//        let urlStr = "http://terminal2.expedia.com/x/suggestions/regions?query=\(city)&apikey=\(cid)"
         return NSURL(string: urlStr)!
     }
     

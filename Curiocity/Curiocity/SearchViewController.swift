@@ -17,7 +17,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     var filteredCitySearches = [City]()
 
     let searchController = UISearchController(searchResultsController: nil)
-
+    var data = NSData()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,18 +27,9 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         searchController.searchBar.delegate = self
         print("SearchViewController")
         
-//        let api = ExpediaAPI()
-//        api.loadCities(didLoadCities)
-        print("+++++++")
-        print("citySearches:", citySearches)
-        
-        
-        citySearches = [
-            City(name: "San Francisco", lat: 234,long: 234),
-//            City(name:"San Jose"),
-//            City(name:"San Diego"),
-//            City(name:"Santa Clara")
-        ]
+        self.citySearches = []
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
@@ -46,12 +37,61 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         tableView.tableHeaderView = searchController.searchBar
     }
     
+    func loadCities(searchQuery: String, completion: (([City]) -> Void)!) {
+        print("ExpediaAPI.swift")
+        let url = Utils.getCitySearchResults(searchQuery)
+        print(url)
+        print("searchQuery:", searchQuery)
+        let task = NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: {
+            (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            print(error)
+            if error == nil {
+                //FIX ME
+                do {
+                    let feedDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+//                    print("feedDictionary:", feedDictionary)
+                    if feedDictionary.valueForKey("rc") as! String == "ZERO_RESULTS" {
+                        return
+                    }
+                    let arr = feedDictionary.valueForKey("sr") as! NSArray
+                    print("arr,",arr)
+                    for dict in arr {
+                        if dict.valueForKey("t") as! String == "CITY" {
+                            print(dict.valueForKey("d"))
+                            let name = dict.valueForKey("d") as! String
+                            let lat = 34
+                            let long = 122
+                            print("APPENDINGGGGG!")
+                            self.citySearches.append(City(name: name, lat: lat, long: long))
+                            print(self.citySearches)
+                            self.tableView.reloadData()
+                        }
+                    }
+                    
+                    // DO NOT CHANGE BELOW
+                    let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+                    dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            completion(self.citySearches)
+                        }
+                    }
+                } catch let error as NSError {
+                    print("ERROR: \(error.localizedDescription)")
+                }
+                
+            }
+        })
+        task.resume()
+        print("end of loadCities")
+    }
+    
     func searchBar(searchBar: UISearchBar, var textDidChange searchText: String) {
+        self.citySearches = []
         print("searchText \(searchText)")
         if searchText.containsString(" ") {
             searchText = searchText.stringByReplacingOccurrencesOfString(" ", withString: "%20")
         }
-        api.loadCities(searchText, completion: didLoadCities)
+        loadCities(searchText, completion: didLoadCities)
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -83,21 +123,19 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if searchController.active && searchController.searchBar.text != "" {
-            return filteredCitySearches.count
-        }
+    
         return citySearches.count
     }
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        print("IN CELL FOR ROW AT INDEX PATH")
         let cell = tableView.dequeueReusableCellWithIdentifier("CitySearchCell", forIndexPath: indexPath)
         let city: City
-        if searchController.active && searchController.searchBar.text != "" {
-            city = filteredCitySearches[indexPath.row]
-        } else {
-            city = citySearches[indexPath.row]
-        }
+        city = citySearches[indexPath.row]
+        print("THIS IS MY CITY!")
+        print(city)
+    
         cell.textLabel?.text = city.name
         return cell
     }
@@ -117,11 +155,9 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     /* Completion handler for API call. DO NOT CHANGE */
     func didLoadCities(citySearches: [City]) {
         self.citySearches = citySearches
-        print("HIIII", citySearches)
         self.tableView!.reloadData()
+        print("self.citySearches:", self.citySearches)
     }
-
-
 }
 
 extension SearchViewController: UISearchResultsUpdating {

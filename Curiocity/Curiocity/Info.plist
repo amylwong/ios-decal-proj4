@@ -44,6 +44,11 @@
 	<string>sjeC1GfOjoOlJ0MaC35xVYI0Vq6GRAqB</string>
 	<key>client_secret</key>
 	<string>oG6CHeMmprvaFmFi</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

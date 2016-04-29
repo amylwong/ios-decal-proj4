@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Cities-->
@@ -15,13 +16,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="10" id="CL5-8D-hiI">
                             <size key="itemSize" width="300" height="184"/>
-                            <size key="headerReferenceSize" width="0.0" height="45"/>
+                            <size key="headerReferenceSize" width="0.0" height="80"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddCityCell" id="S89-CL-1Zv" customClass="CityCell" customModule="Curiocity" customModuleProvider="target">
-                                <rect key="frame" x="150" y="50" width="300" height="184"/>
+                                <rect key="frame" x="150" y="85" width="300" height="184"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="184"/>
@@ -43,7 +44,7 @@
                                 </constraints>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="230" horizontalCompressionResistancePriority="740" reuseIdentifier="CityCell" id="heA-om-yef" customClass="CityCell" customModule="Curiocity" customModuleProvider="target">
-                                <rect key="frame" x="150" y="239" width="300" height="184"/>
+                                <rect key="frame" x="150" y="274" width="300" height="184"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="184"/>
@@ -69,18 +70,19 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="bHd-me-mrW">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="45"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" preservesSuperviewLayoutMargins="YES" image="CuriocityLogo" translatesAutoresizingMaskIntoConstraints="NO" id="HBQ-gN-qCe">
-                                    <rect key="frame" x="254" y="12" width="91" height="21"/>
-                                    <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="CuriocityLogo" translatesAutoresizingMaskIntoConstraints="NO" id="vhS-aO-iCV">
+                                    <rect key="frame" x="180" y="-41" width="240" height="128"/>
                                 </imageView>
                             </subviews>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstItem="HBQ-gN-qCe" firstAttribute="centerY" secondItem="bHd-me-mrW" secondAttribute="centerY" id="DKB-eq-1YO"/>
-                                <constraint firstItem="HBQ-gN-qCe" firstAttribute="centerY" secondItem="bHd-me-mrW" secondAttribute="centerY" id="JEK-hJ-VlZ"/>
-                                <constraint firstItem="HBQ-gN-qCe" firstAttribute="centerX" secondItem="bHd-me-mrW" secondAttribute="centerX" id="NOS-un-JmD"/>
+                                <constraint firstAttribute="bottomMargin" secondItem="vhS-aO-iCV" secondAttribute="bottom" constant="-50" id="Nyj-Wq-Of7"/>
+                                <constraint firstItem="vhS-aO-iCV" firstAttribute="leading" secondItem="bHd-me-mrW" secondAttribute="leadingMargin" constant="172" id="bBo-O2-kuA"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="vhS-aO-iCV" secondAttribute="trailing" constant="172" id="hp0-nv-SC4"/>
+                                <constraint firstItem="vhS-aO-iCV" firstAttribute="top" secondItem="bHd-me-mrW" secondAttribute="topMargin" constant="-49" id="jTX-ov-JP3"/>
                             </constraints>
                         </collectionReusableView>
                         <connections>
@@ -92,20 +94,11 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zy-Sb-ZOw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="669" y="-443"/>
+            <point key="canvasLocation" x="626" y="-428"/>
         </scene>
         <!--Search-->
         <scene sceneID="Xr8-4q-fti">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wvf-h8-Rfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="sPF-b9-hNt">
-                    <connections>
-                        <outlet property="delegate" destination="TGy-Hv-UbE" id="Rib-5P-2WD"/>
-                        <outlet property="searchContentsController" destination="TGy-Hv-UbE" id="JQ2-Z6-qlq"/>
-                        <outlet property="searchResultsDataSource" destination="TGy-Hv-UbE" id="GDu-6r-iBk"/>
-                        <outlet property="searchResultsDelegate" destination="TGy-Hv-UbE" id="ENH-Co-O18"/>
-                    </connections>
-                </searchDisplayController>
                 <tableViewController id="TGy-Hv-UbE" customClass="SearchViewController" customModule="Curiocity" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="60" sectionFooterHeight="28" id="w0F-80-H5v">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -133,6 +126,15 @@
                         <segue destination="ych-Ba-efM" kind="showDetail" identifier="showCityDetail" id="yY8-U6-zsP"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wvf-h8-Rfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="sPF-b9-hNt">
+                    <connections>
+                        <outlet property="delegate" destination="TGy-Hv-UbE" id="Rib-5P-2WD"/>
+                        <outlet property="searchContentsController" destination="TGy-Hv-UbE" id="JQ2-Z6-qlq"/>
+                        <outlet property="searchResultsDataSource" destination="TGy-Hv-UbE" id="GDu-6r-iBk"/>
+                        <outlet property="searchResultsDelegate" destination="TGy-Hv-UbE" id="ENH-Co-O18"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1331" y="34"/>
         </scene>
@@ -258,6 +260,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CuriocityLogo" width="300" height="100"/>
+        <image name="CuriocityLogo" width="214" height="81"/>
     </resources>
 </document>
