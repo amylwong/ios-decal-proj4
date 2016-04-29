@@ -35,6 +35,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     func loadCities(searchQuery: String, completion: (([City]) -> Void)!) {
         let url = Utils.getCitySearchResults(searchQuery)
+        print(url)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: {
             (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             print(error)
@@ -48,9 +49,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
                     for dict in arr {
                         if dict.valueForKey("t") as! String == "CITY" {
                             print(dict.valueForKey("d"))
-//                            let name = dict.valueForKey("d") as! String
-//                            let lat = dict.valueForKey("ll").valueForKey("lat") as! String
-//                            let long = dict.valueForKey("ll").valueForKey("lat") as! String
                             self.citySearches.append(City(dict: dict as! NSDictionary))
                             self.tableView.reloadData()
                         }
@@ -76,7 +74,17 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         if searchText.containsString(" ") {
             searchText = searchText.stringByReplacingOccurrencesOfString(" ", withString: "%20")
         }
-        loadCities(searchText, completion: didLoadCities)
+        if searchText != "" {
+            loadCities(searchText, completion: didLoadCities)
+        }
+    
+        if searchText == "" {
+            print("nothing in searchbar")
+            self.citySearches = []
+            self.tableView!.reloadData()
+            print("SHOULD BE EMPTY: ", citySearches)
+        }
+        
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -87,16 +95,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         print("3")
     }
-
-    
-//    func filterCitySearches(searchText: String, scope: String = "All") {
-//        print("filterCitySearches")
-//        filteredCitySearches = citySearches.filter { city in
-//            return city.name.lowercaseString.containsString(searchText.lowercaseString)
-//        }
-//        
-//        tableView.reloadData()
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
