@@ -106,10 +106,13 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
         return citySearches.count
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let citySelected = citySearches[indexPath.row]
+        print(citySelected.name)
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("CitySearchCell", forIndexPath: indexPath)
@@ -119,17 +122,23 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         return cell
     }
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "showCityDetail" {
-//            if let indexPath = tableView.indexPathForSelectedRow {
-//                let city = citySearches[indexPath.row]
-//                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
-//                controller.cityNameLabel = city
-//                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
-//                controller.navigationItem.leftItemsSupplementBackButton = true
-//            }
-//        }
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("prepareForSegue")
+        let destVC = segue.destinationViewController as! CitySearchSelectedViewController
+        if (segue.identifier == "toCitySelected") {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let city = citySearches[indexPath.row]
+                print(city)
+                print(city.name)
+                
+                destVC.name = city.name
+                
+            }
+            return
+        } else {
+            return
+        }
+    }
     
     /* Completion handler for API call. DO NOT CHANGE */
     func didLoadCities(citySearches: [City]) {

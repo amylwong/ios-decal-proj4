@@ -94,7 +94,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zy-Sb-ZOw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="626" y="-428"/>
+            <point key="canvasLocation" x="674" y="-756"/>
         </scene>
         <!--Search-->
         <scene sceneID="Xr8-4q-fti">
@@ -113,6 +113,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="LOH-Ah-mGc" kind="show" identifier="toCitySelected" id="CUl-q9-kGO"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -123,7 +126,6 @@
                     <tabBarItem key="tabBarItem" title="Search" id="JhP-23-8RO"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="sPF-b9-hNt" id="Rsd-HB-9m5"/>
-                        <segue destination="ych-Ba-efM" kind="showDetail" identifier="showCityDetail" id="yY8-U6-zsP"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wvf-h8-Rfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -136,34 +138,42 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1331" y="34"/>
+            <point key="canvasLocation" x="674" y="-102"/>
         </scene>
-        <!--City Detail View Controller-->
-        <scene sceneID="qdS-aF-W4w">
+        <!--City Search Selected View Controller-->
+        <scene sceneID="uxG-j2-tHa">
             <objects>
-                <viewController id="Csa-GU-0MB" customClass="CityDetailViewController" sceneMemberID="viewController">
+                <viewController id="LOH-Ah-mGc" customClass="CitySearchSelectedViewController" customModule="Curiocity" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="86Q-2B-rQz"/>
-                        <viewControllerLayoutGuide type="bottom" id="Dvi-QI-aXQ"/>
+                        <viewControllerLayoutGuide type="top" id="Xcz-bh-opx"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bjm-XN-vev"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="nNu-Ux-U1A">
+                    <view key="view" contentMode="scaleToFill" id="Wbp-iW-GxY">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="City Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGA-eP-ONp">
-                                <rect key="frame" x="275" y="115" width="80" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFN-8m-VX2">
+                                <rect key="frame" x="101" y="103" width="399" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="bFN-8m-VX2" firstAttribute="leading" secondItem="Wbp-iW-GxY" secondAttribute="leadingMargin" constant="81" id="Dfg-Tt-PVQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bFN-8m-VX2" secondAttribute="trailing" constant="80" id="FF5-hC-Mxw"/>
+                            <constraint firstItem="bFN-8m-VX2" firstAttribute="top" secondItem="Xcz-bh-opx" secondAttribute="bottom" constant="83" id="GB6-hT-Sw9"/>
+                            <constraint firstItem="Bjm-XN-vev" firstAttribute="top" secondItem="bFN-8m-VX2" secondAttribute="bottom" constant="427" id="ouC-y4-jfr"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="BJv-A2-R8h"/>
+                    <connections>
+                        <outlet property="cityNameLabel" destination="bFN-8m-VX2" id="dFl-GF-WBw"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cWf-u5-awZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Csh-Po-Obh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2788" y="47"/>
+            <point key="canvasLocation" x="1406" y="-97"/>
         </scene>
         <!--Destinations-->
         <scene sceneID="ud9-fj-xHY">
@@ -239,24 +249,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-66" y="14"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Atg-xv-TpL">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ych-Ba-efM" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ren-dX-2ly">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Csa-GU-0MB" kind="relationship" relationship="rootViewController" id="OEE-ek-eOf"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oPz-5t-KEI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1976" y="47"/>
         </scene>
     </scenes>
     <resources>
