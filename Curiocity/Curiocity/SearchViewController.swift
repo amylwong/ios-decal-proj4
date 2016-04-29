@@ -122,6 +122,11 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         return cell
     }
     
+    @IBAction func unwindToDoListTableViewController(segue: UIStoryboardSegue) {
+        self.tableView.reloadData()
+    }
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print("prepareForSegue")
         let destVC = segue.destinationViewController as! CitySearchSelectedViewController

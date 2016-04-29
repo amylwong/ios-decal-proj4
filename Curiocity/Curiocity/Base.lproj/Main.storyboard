@@ -140,7 +140,7 @@
             </objects>
             <point key="canvasLocation" x="674" y="-102"/>
         </scene>
-        <!--City Search Selected View Controller-->
+        <!--Title-->
         <scene sceneID="uxG-j2-tHa">
             <objects>
                 <viewController id="LOH-Ah-mGc" customClass="CitySearchSelectedViewController" customModule="Curiocity" customModuleProvider="target" sceneMemberID="viewController">
@@ -158,6 +158,18 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u55-dS-hSN">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="flG-fW-eGa">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" id="BaM-lk-ETH">
+                                            <connections>
+                                                <segue destination="cxS-oM-GkG" kind="unwind" unwindAction="unwindToDoListTableViewController:" id="9lL-Ld-OZF"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -167,11 +179,15 @@
                             <constraint firstItem="Bjm-XN-vev" firstAttribute="top" secondItem="bFN-8m-VX2" secondAttribute="bottom" constant="427" id="ouC-y4-jfr"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="zeC-Mf-60C">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="UyO-wA-Qe5"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="cityNameLabel" destination="bFN-8m-VX2" id="dFl-GF-WBw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Csh-Po-Obh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="cxS-oM-GkG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1406" y="-97"/>
         </scene>
