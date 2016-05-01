@@ -15,51 +15,61 @@ class MapViewController: UIViewController {
     
     let regionRadius: CLLocationDistance = 1000
     var allPOI = [PointOfInterest]()
+    var initial : Bool = true
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("MapViewController")
-        
-        
-        
+        var annotations = [MKPointAnnotation]()
         let thirdTab = self.tabBarController?.viewControllers![2] as! PointOfInterestsViewController
         print("myPOI", thirdTab.myPOI)
-//        allPOI = thirdTab.myPOI.keys
         let myPOI = thirdTab.myPOI
-        addLocations(myPOI)
-        let initialLoc = CLLocation(latitude:37.8716, longitude:-122.2727)
-        centerMapOnLocation(initialLoc)
-        
-        print(initialLoc.coordinate)
-        let lat = initialLoc.coordinate.latitude
-        let long = initialLoc.coordinate.longitude
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        annotation.title = "Initial Location: \(lat), \(long)"
-        annotation.subtitle = "I am here"
-        mapView.addAnnotation(annotation)
-        // show all annotations without zooming out
-        mapView.showAnnotations(mapView.annotations, animated: true)
+        for (name, poiObj) in myPOI {
+            print(initial)
+            if initial {
+                initial = false
+                let annotation = MKPointAnnotation()
+                let initialLoc = CLLocation(latitude: Double(poiObj.lat)!, longitude: Double(poiObj.long)!)
+                centerMapOnLocation(initialLoc)
+                let lat = initialLoc.coordinate.latitude
+                let long = initialLoc.coordinate.longitude
+                annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                annotation.title = name
+                print("INITIAL LOCATION", name)
+                mapView.addAnnotation(annotation)
+                annotations.append(annotation)
+            } else {
+                print("2")
+                let annotation = MKPointAnnotation()
+                annotation.title = name
+                annotation.coordinate = CLLocationCoordinate2D(latitude: Double(poiObj.lat)!, longitude: Double(poiObj.long)!)
+                mapView.addAnnotation(annotation)
+                annotations.append(annotation)
+            }
+        }
+//        var rect = MKMapRectNull
+//        for p in annotations {
+//            let k = MKMapPointForCoordinate(p.coordinate)
+//            rect = MKMapRectUnion(rect, MKMapRectMake(k.x, k.y, 0.1, 0.1))
+//        }
+
     }
     
-    
-    func addLocations(poi: [String:PointOfInterest]) {
-        for (name, poiObj) in poi {
-            let annotation = MKPointAnnotation()
-            annotation.title = name
-            annotation.coordinate = CLLocationCoordinate2D(latitude: Double(poiObj.lat)!, longitude: Double(poiObj.long)!)
-            mapView.addAnnotation(annotation)
-        }
+
+    func mapViewDidFinishRenderingMap(mapView: MKMapView!) {
+        // this is where visible maprect should be set
+        print("hii")
+        mapView.showAnnotations(mapView.annotations, animated: true)
     }
     
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion =
         MKCoordinateRegionMakeWithDistance(
             location.coordinate,
-            regionRadius * 2.0,
-            regionRadius * 2.0)
+            regionRadius * 15.0,
+            regionRadius * 15.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
 
@@ -67,7 +77,7 @@ class MapViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     
 }
 

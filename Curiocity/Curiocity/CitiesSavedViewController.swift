@@ -11,7 +11,7 @@ import UIKit
 class CitiesSavedViewController : UICollectionViewController {
     
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
-    var cityPlansSaved = ["Berkeley","Oakland","Concord","San Jose","Fremont"]
+    var cityPlansSaved = ["Berkeley"]
     
     
     override func viewDidLoad() {
