@@ -23,4 +23,15 @@ class Utils {
         return NSURL(string: urlStr)!
     }
     
+    class func getGoogleSearchApiKey() -> String {
+        let path = NSBundle.mainBundle().pathForResource("Info", ofType: "plist")
+        let apiKey = NSDictionary(contentsOfFile: path!)?.valueForKey("custom_search_engine_api_key") as! String
+        return apiKey
+    }
+    
+    class func getSearchEngineKey() -> String {
+        let path = NSBundle.mainBundle().pathForResource("Info", ofType: "plist")
+        let searchEngineKey = NSDictionary(contentsOfFile: path!)?.valueForKey("search_engine_key") as! String
+        return searchEngineKey
+    }
 }

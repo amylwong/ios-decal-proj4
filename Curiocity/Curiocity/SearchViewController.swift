@@ -13,9 +13,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     let api = ExpediaAPI()
     var searchActive : Bool = false
     var citySearches = [City]()
+    var citySelected : City!
 
     let searchController = UISearchController(searchResultsController: nil)
     var data = NSData()
+    
+//    var snippet = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +38,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     func loadCities(searchQuery: String, completion: (([City]) -> Void)!) {
         let url = Utils.getCitySearchResults(searchQuery)
-        print(url)
         let task = NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: {
             (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-            print(error)
             if error == nil {
                 do {
                     let feedDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
@@ -68,23 +69,21 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         task.resume()
     }
     
+
+    
     func searchBar(searchBar: UISearchBar, var textDidChange searchText: String) {
         self.citySearches = []
-        print("searchText \(searchText)")
+//        print("searchText \(searchText)")
         if searchText.containsString(" ") {
             searchText = searchText.stringByReplacingOccurrencesOfString(" ", withString: "%20")
         }
         if searchText != "" {
             loadCities(searchText, completion: didLoadCities)
         }
-    
         if searchText == "" {
-            print("nothing in searchbar")
             self.citySearches = []
             self.tableView!.reloadData()
-            print("SHOULD BE EMPTY: ", citySearches)
         }
-        
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -110,8 +109,9 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let citySelected = citySearches[indexPath.row]
+        self.citySelected = citySearches[indexPath.row]
         print(citySelected.name)
+        tabBarController?.selectedIndex = 2
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -126,29 +126,38 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         self.tableView.reloadData()
     }
     
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        print("prepareForSegue")
+//        let destVC = segue.destinationViewController as! CitySearchSelectedViewController
+//        if (segue.identifier == "toCitySelected") {
+//            if let indexPath = tableView.indexPathForSelectedRow {
+//                let city = citySearches[indexPath.row]
+//                print(city.name)
+//                
+//                destVC.name = city.name
+////                loadInformation("asdf", completion: didLoadInformation)
+////                destVC.snippet = self.snippet
+////                print("end")
+//            }
+//            return
+//        } else {
+//            return
+//        }
+//    }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("prepareForSegue")
-        let destVC = segue.destinationViewController as! CitySearchSelectedViewController
-        if (segue.identifier == "toCitySelected") {
-            if let indexPath = tableView.indexPathForSelectedRow {
-                let city = citySearches[indexPath.row]
-                print(city)
-                print(city.name)
-                
-                destVC.name = city.name
-                
-            }
-            return
-        } else {
-            return
-        }
-    }
+    
+
+    
+    
     
     /* Completion handler for API call. DO NOT CHANGE */
     func didLoadCities(citySearches: [City]) {
         self.citySearches = citySearches
         self.tableView!.reloadData()
     }
+//    
+//    func didLoadInformation(info: String) {
+//        
+//    }
 }
 

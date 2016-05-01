@@ -8,7 +8,8 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class CityDetailViewController: UIViewController {
+    
     
     
 }

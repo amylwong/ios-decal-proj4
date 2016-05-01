@@ -44,6 +44,12 @@
 	<string>sjeC1GfOjoOlJ0MaC35xVYI0Vq6GRAqB</string>
 	<key>client_secret</key>
 	<string>oG6CHeMmprvaFmFi</string>
+	<key>custom_search_engine_api_key</key>
+	<string>AIzaSyC23XfzfqEsuqZYEH2QBQHp7ZV8A89mCj0</string>
+	<key>search_engine_key</key>
+	<string>002821250313775171056:qylbfxx5bm8</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
