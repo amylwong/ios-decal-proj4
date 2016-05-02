@@ -19,14 +19,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     let searchController = UISearchController(searchResultsController: nil)
     var data = NSData()
     
-//    var snippet = String()
-    
-    
-    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        //This method will be called when user changes tab.
-        print("click")
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -120,6 +112,14 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let alertController: UIAlertController = UIAlertController(title: "City Saved!", message: "Proceed to explore point of interests.", preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
+            UIAlertAction in
+            NSLog("OK Pressed")
+        }
+        alertController.gaddAction(okAction)
+        presentViewController(alertController, animated: true, completion: nil)
+        
         self.citySelected = citySearches[indexPath.row]
         print(citySelected.name)
         tabBarController?.selectedIndex = 2
@@ -133,18 +133,18 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         return cell
     }
     
-    @IBAction func unwindTableViewController(segue: UIStoryboardSegue) {
-        self.tableView.reloadData()
-    }
-    
-    @IBAction func unwindToPOIController(segue: UIStoryboardSegue) {
-        let alertController: UIAlertController = UIAlertController(title: "City Saved!", message: "Proceed to explore point of interests.", preferredStyle: UIAlertControllerStyle.Alert)
-        presentViewController(alertController, animated: true, completion: nil)
-
-        tabBarController?.selectedIndex = 2
-
-        print("hihihihi")
-    }
+//    @IBAction func unwindTableViewController(segue: UIStoryboardSegue) {
+//        self.tableView.reloadData()
+//    }
+//    
+//    @IBAction func unwindToPOIController(segue: UIStoryboardSegue) {
+//        let alertController: UIAlertController = UIAlertController(title: "City Saved!", message: "Proceed to explore point of interests.", preferredStyle: UIAlertControllerStyle.Alert)
+//        presentViewController(alertController, animated: true, completion: nil)
+//
+//        tabBarController?.selectedIndex = 2
+//
+//        print("hihihihi")
+//    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print("prepareForSegue")
