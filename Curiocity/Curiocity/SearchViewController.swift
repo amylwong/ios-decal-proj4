@@ -1,4 +1,4 @@
-//
+ //
 //  SecondViewController.swift
 //  Curiocity
 //
@@ -21,6 +21,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        print("SearchViewController")
         tableView.delegate = self
         tableView.dataSource = self
         searchController.searchBar.delegate = self
@@ -32,17 +33,18 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
-        print("viewDidLoad")
     }
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+//        tableView.reloadData()
         print("viewWillAppear")
+        searchController.searchBar.hidden = false
 //        // clear previous search findings
 //        citySearches.removeAll()
-//        tableView.reloadData()
-//        
+        tableView!.reloadData()
+//
     }
     
     func loadCities(searchQuery: String, completion: (([City]) -> Void)!) {
@@ -94,11 +96,11 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        print("2")
+//        print("2")
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        print("3")
+//        print("3")
     }
 
     override func didReceiveMemoryWarning() {
@@ -115,6 +117,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("why isnt alert showing up?")
         let alertController: UIAlertController = UIAlertController(title: "City Saved!", message: "Proceed to explore point of interests.", preferredStyle: UIAlertControllerStyle.Alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
             UIAlertAction in
@@ -122,12 +125,26 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             self.searchController.searchBar.text = ""
             
         }
+        
+        self.searchController.active = false
+        
         alertController.addAction(okAction)
         presentViewController(alertController, animated: true, completion: nil)
         self.citySelected = citySearches[indexPath.row]
+        citySearches.removeAll()
+        let POITab = self.tabBarController?.viewControllers![2] as! PointOfInterestsViewController
+        POITab.cityPOI.removeAll()
+        print("going to poi from search")
         tabBarController?.selectedIndex = 2
         let savedCitiesTab = self.tabBarController?.viewControllers![0] as! CitiesSavedViewController
+        
+        for city in savedCitiesTab.cityPlansSaved {
+            if city.name == self.citySelected.name {
+                return
+            }
+        }
         savedCitiesTab.cityPlansSaved.append(citySelected)
+        print("&&&",savedCitiesTab.cityPlansSaved)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -138,18 +155,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         return cell
     }
     
-//    @IBAction func unwindTableViewController(segue: UIStoryboardSegue) {
-//        self.tableView.reloadData()
-//    }
-//    
-//    @IBAction func unwindToPOIController(segue: UIStoryboardSegue) {
-//        let alertController: UIAlertController = UIAlertController(title: "City Saved!", message: "Proceed to explore point of interests.", preferredStyle: UIAlertControllerStyle.Alert)
-//        presentViewController(alertController, animated: true, completion: nil)
-//
-//        tabBarController?.selectedIndex = 2
-//
-//        print("hihihihi")
-//    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print("prepareForSegue")
@@ -159,12 +164,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
                 let city = citySearches[indexPath.row]
                 destVC.cityObj = city
                 destVC.name = city.name
-//                loadInformation("asdf", completion: didLoadInformation)
-//                destVC.snippet = self.snippet
-//                print("end")
             }
-            return
-        } else {
             return
         }
     }

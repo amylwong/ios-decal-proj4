@@ -28,13 +28,13 @@ class PointOfInterestsViewController: UITableViewController {
         }
     }
     
-//    override func viewWillAppear(animated: Bool) {
-//        super.viewWillAppear(animated)
-//        tableView!.reloadData()
-//        print("reload")
-////        print((self.tabBarController?.viewControllers![1] as! SearchViewController).citySelected.name)
-////        self.viewDidLoad()
-//    }
+//        override func viewWillAppear(animated: Bool) {
+//            super.viewWillAppear(animated)
+//            tableView!.reloadData()
+//            print("reload")
+    //        print((self.tabBarController?.viewControllers![1] as! SearchViewController).citySelected.name)
+    //        self.viewDidLoad()
+//        }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -87,11 +87,11 @@ class PointOfInterestsViewController: UITableViewController {
             let alertController: UIAlertController = UIAlertController(title: "No Points of Interest Found :(", message: "Unfortunately, the API does not have data for this city.", preferredStyle: UIAlertControllerStyle.Alert)
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
                 UIAlertAction in
-
+                
             }
             alertController.addAction(okAction)
         }
-
+        
         return cityPOI.count
     }
     
@@ -110,7 +110,7 @@ class PointOfInterestsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        let name = cityPOI[indexPath.row].POIName 
+        let name = cityPOI[indexPath.row].POIName
         print("+",name)
         if !(selectedPOI.contains(name)) {
             selectedPOI.append(name)
@@ -120,7 +120,7 @@ class PointOfInterestsViewController: UITableViewController {
         } else {
             selectedPOI = selectedPOI.filter() {$0 != name}
             myPOI.removeValueForKey(name)
-
+            
         }
         tableView.reloadData()
         
@@ -133,4 +133,3 @@ class PointOfInterestsViewController: UITableViewController {
     }
     
 }
-
