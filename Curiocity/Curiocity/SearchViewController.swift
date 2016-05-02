@@ -117,7 +117,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             UIAlertAction in
             NSLog("OK Pressed")
         }
-        alertController.gaddAction(okAction)
+        alertController.addAction(okAction)
         presentViewController(alertController, animated: true, completion: nil)
         
         self.citySelected = citySearches[indexPath.row]
