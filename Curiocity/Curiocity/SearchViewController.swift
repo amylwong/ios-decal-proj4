@@ -14,6 +14,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     var searchActive : Bool = false
     var citySearches = [City]()
     var citySelected : City!
+    var cityToSave : City!
 
     let searchController = UISearchController(searchResultsController: nil)
     var data = NSData()
@@ -34,6 +35,10 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
+        if cityToSave != nil {
+            print("city to save", cityToSave)
+        }
+    
     }
     
     func loadCities(searchQuery: String, completion: (([City]) -> Void)!) {
@@ -111,7 +116,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.citySelected = citySearches[indexPath.row]
         print(citySelected.name)
-        tabBarController?.selectedIndex = 2
+//        tabBarController?.selectedIndex = 2
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -122,31 +127,37 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         return cell
     }
     
-    @IBAction func unwindToDoListTableViewController(segue: UIStoryboardSegue) {
+    @IBAction func unwindTableViewController(segue: UIStoryboardSegue) {
         self.tableView.reloadData()
     }
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        print("prepareForSegue")
-//        let destVC = segue.destinationViewController as! CitySearchSelectedViewController
-//        if (segue.identifier == "toCitySelected") {
-//            if let indexPath = tableView.indexPathForSelectedRow {
-//                let city = citySearches[indexPath.row]
-//                print(city.name)
-//                
-//                destVC.name = city.name
-////                loadInformation("asdf", completion: didLoadInformation)
-////                destVC.snippet = self.snippet
-////                print("end")
-//            }
-//            return
-//        } else {
-//            return
-//        }
-//    }
-    
-    
+    @IBAction func unwindToPOIController(segue: UIStoryboardSegue) {
+        let alertController: UIAlertController = UIAlertController(title: "City Saved!", message: "Proceed to explore point of interests.", preferredStyle: UIAlertControllerStyle.Alert)
+        presentViewController(alertController, animated: true, completion: nil)
 
+        tabBarController?.selectedIndex = 2
+
+        print("hihihihi")
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("prepareForSegue")
+        let destVC = segue.destinationViewController as! CitySearchSelectedViewController
+        if (segue.identifier == "toCitySelected") {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let city = citySearches[indexPath.row]
+                print(city.name)
+                destVC.cityObj = city
+                destVC.name = city.name
+//                loadInformation("asdf", completion: didLoadInformation)
+//                destVC.snippet = self.snippet
+//                print("end")
+            }
+            return
+        } else {
+            return
+        }
+    }
     
     
     
