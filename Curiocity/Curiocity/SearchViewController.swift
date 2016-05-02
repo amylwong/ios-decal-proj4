@@ -11,7 +11,6 @@ import UIKit
 class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     let api = ExpediaAPI()
-    var searchActive : Bool = false
     var citySearches = [City]()
     var citySelected : City!
     var cityToSave : City!
@@ -33,6 +32,17 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
+        print("viewDidLoad")
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+        print("viewWillAppear")
+//        // clear previous search findings
+//        citySearches.removeAll()
+//        tableView.reloadData()
+//        
     }
     
     func loadCities(searchQuery: String, completion: (([City]) -> Void)!) {
@@ -71,7 +81,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     func searchBar(searchBar: UISearchBar, var textDidChange searchText: String) {
         self.citySearches = []
-//        print("searchText \(searchText)")
         if searchText.containsString(" ") {
             searchText = searchText.stringByReplacingOccurrencesOfString(" ", withString: "%20")
         }
@@ -86,7 +95,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         print("2")
-        print("searchText \(searchBar.text)")
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
@@ -111,20 +119,15 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
             UIAlertAction in
             NSLog("OK Pressed")
+            self.searchController.searchBar.text = ""
+            
         }
         alertController.addAction(okAction)
         presentViewController(alertController, animated: true, completion: nil)
-        
-        
         self.citySelected = citySearches[indexPath.row]
-        print(citySelected.name)
         tabBarController?.selectedIndex = 2
-        
-        
         let savedCitiesTab = self.tabBarController?.viewControllers![0] as! CitiesSavedViewController
         savedCitiesTab.cityPlansSaved.append(citySelected)
-        print("^^^^^", savedCitiesTab.cityPlansSaved)
-        
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -154,7 +157,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         if (segue.identifier == "toCitySelected") {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let city = citySearches[indexPath.row]
-                print(city.name)
                 destVC.cityObj = city
                 destVC.name = city.name
 //                loadInformation("asdf", completion: didLoadInformation)
@@ -174,9 +176,5 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         self.citySearches = citySearches
         self.tableView!.reloadData()
     }
-//    
-//    func didLoadInformation(info: String) {
-//        
-//    }
 }
 

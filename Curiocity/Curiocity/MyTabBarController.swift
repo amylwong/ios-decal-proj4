@@ -15,13 +15,11 @@ class MyTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     override func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
-        print("Selected item")
-        print(tabBar)
+//        print("Selected item")
     }
     
     // UITabBarControllerDelegate
     func tabBarController(tabBarController: UITabBarController, didSelectViewController viewController: UIViewController) {
-        print("Selected view controller")
-        print(selectedViewController)
+//        print("Selected view controller")
     }
 }

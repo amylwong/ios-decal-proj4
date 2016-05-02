@@ -14,7 +14,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     let regionRadius: CLLocationDistance = 1000
-    var allPOI = [PointOfInterest]()
+    var allPOI = [String:PointOfInterest]()
     var initial : Bool = true
 
     
@@ -22,11 +22,12 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("MapViewController")
+        mapView.removeAnnotations(mapView.annotations)
         var annotations = [MKPointAnnotation]()
         let thirdTab = self.tabBarController?.viewControllers![2] as! PointOfInterestsViewController
         print("myPOI", thirdTab.myPOI)
-        let myPOI = thirdTab.myPOI
-        for (name, poiObj) in myPOI {
+        allPOI = thirdTab.myPOI
+        for (name, poiObj) in allPOI {
             print(initial)
             if initial {
                 initial = false
@@ -49,14 +50,17 @@ class MapViewController: UIViewController {
                 annotations.append(annotation)
             }
         }
-//        var rect = MKMapRectNull
-//        for p in annotations {
-//            let k = MKMapPointForCoordinate(p.coordinate)
-//            rect = MKMapRectUnion(rect, MKMapRectMake(k.x, k.y, 0.1, 0.1))
-//        }
 
+        mapView.showAnnotations(mapView.annotations, animated: true)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewDidLoad()
+        print("reload MAPVIEW")
+        print(allPOI)
+        
+    }
 
     func mapViewDidFinishRenderingMap(mapView: MKMapView!) {
         // this is where visible maprect should be set

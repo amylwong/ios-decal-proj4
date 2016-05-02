@@ -29,6 +29,8 @@ class CitiesSavedViewController : UICollectionViewController {
         let reuseIdentifier = (indexPath.item == 0) ? "AddCityCell" : "CityCell"
         if reuseIdentifier == "AddCityCell" {
             tabBarController?.selectedIndex = 1
+        } else {
+            tabBarController?.selectedIndex = 2
         }
     }
     
