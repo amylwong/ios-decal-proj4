@@ -20,6 +20,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     var data = NSData()
     
 //    var snippet = String()
+    
+    
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        //This method will be called when user changes tab.
+        print("click")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,7 +122,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.citySelected = citySearches[indexPath.row]
         print(citySelected.name)
-//        tabBarController?.selectedIndex = 2
+        tabBarController?.selectedIndex = 2
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

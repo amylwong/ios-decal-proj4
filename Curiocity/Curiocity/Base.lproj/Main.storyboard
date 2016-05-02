@@ -113,9 +113,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="LOH-Ah-mGc" kind="show" identifier="toCitySelected" id="Euz-FW-18O"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
