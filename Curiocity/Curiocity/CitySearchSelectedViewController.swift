@@ -21,13 +21,13 @@ class CitySearchSelectedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("CitySearchSelectedViewController")
         button.addTarget(self, action: "toPointOfInterestTab", forControlEvents: .TouchUpInside)
         cityNameLabel.text = name
-        self.loadInformation("Oakland+Ca", completion: self.didLoadInformation)
-
-        print("view did load", citySnippet.text)
-        print("snippet",self.snippet)
-        
+//        self.loadInformation("Oakland+Ca", completion: self.didLoadInformation)
+//
+//        print("view did load", citySnippet.text)
+//        print("snippet",self.snippet)
 
     }
     

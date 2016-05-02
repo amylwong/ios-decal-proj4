@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E1053DF71CD611A4002D31A4 /* PointOfInterest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1053DF61CD611A4002D31A4 /* PointOfInterest.swift */; };
+		E1053DF91CD70099002D31A4 /* MyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1053DF81CD70099002D31A4 /* MyTabBarController.swift */; };
 		E1273BBB1CD32A5900ABE762 /* CitySearchSelectedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1273BBA1CD32A5900ABE762 /* CitySearchSelectedViewController.swift */; };
 		E178185B1CCF677C002A3D69 /* PointOfInterestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178185A1CCF677C002A3D69 /* PointOfInterestsViewController.swift */; };
 		E178185D1CCF67A0002A3D69 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178185C1CCF67A0002A3D69 /* MapViewController.swift */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		E1053DF61CD611A4002D31A4 /* PointOfInterest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointOfInterest.swift; sourceTree = "<group>"; };
+		E1053DF81CD70099002D31A4 /* MyTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTabBarController.swift; sourceTree = "<group>"; };
 		E1273BBA1CD32A5900ABE762 /* CitySearchSelectedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitySearchSelectedViewController.swift; sourceTree = "<group>"; };
 		E178185A1CCF677C002A3D69 /* PointOfInterestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointOfInterestsViewController.swift; sourceTree = "<group>"; };
 		E178185C1CCF67A0002A3D69 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				E1A5566F1CD206530023E316 /* CityCell.swift */,
 				E17818641CD0A1C2002A3D69 /* City.swift */,
 				E1273BBA1CD32A5900ABE762 /* CitySearchSelectedViewController.swift */,
+				E1053DF81CD70099002D31A4 /* MyTabBarController.swift */,
 				E1D177EA1CCD92CD00422EA5 /* SearchViewController.swift */,
 				E1D177EC1CCD92CD00422EA5 /* Main.storyboard */,
 				E1053DF61CD611A4002D31A4 /* PointOfInterest.swift */,
@@ -245,6 +248,7 @@
 				E1053DF71CD611A4002D31A4 /* PointOfInterest.swift in Sources */,
 				E1273BBB1CD32A5900ABE762 /* CitySearchSelectedViewController.swift in Sources */,
 				E1A556701CD206530023E316 /* CityCell.swift in Sources */,
+				E1053DF91CD70099002D31A4 /* MyTabBarController.swift in Sources */,
 				E178185B1CCF677C002A3D69 /* PointOfInterestsViewController.swift in Sources */,
 				E17818631CD049BE002A3D69 /* Utils.swift in Sources */,
 				E17818601CD044DF002A3D69 /* ExpediaAPI.swift in Sources */,

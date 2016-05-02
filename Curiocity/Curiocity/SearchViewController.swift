@@ -33,10 +33,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
-        if cityToSave != nil {
-            print("city to save", cityToSave)
-        }
-    
     }
     
     func loadCities(searchQuery: String, completion: (([City]) -> Void)!) {
@@ -52,7 +48,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
                     let arr = feedDictionary.valueForKey("sr") as! NSArray
                     for dict in arr {
                         if dict.valueForKey("t") as! String == "CITY" {
-                            print(dict.valueForKey("d"))
                             self.citySearches.append(City(dict: dict as! NSDictionary))
                             self.tableView.reloadData()
                         }
@@ -120,9 +115,16 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         alertController.addAction(okAction)
         presentViewController(alertController, animated: true, completion: nil)
         
+        
         self.citySelected = citySearches[indexPath.row]
         print(citySelected.name)
         tabBarController?.selectedIndex = 2
+        
+        
+        let savedCitiesTab = self.tabBarController?.viewControllers![0] as! CitiesSavedViewController
+        savedCitiesTab.cityPlansSaved.append(citySelected)
+        print("^^^^^", savedCitiesTab.cityPlansSaved)
+        
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
