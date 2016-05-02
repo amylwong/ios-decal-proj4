@@ -257,7 +257,7 @@
             </objects>
             <point key="canvasLocation" x="1406" y="-97"/>
         </scene>
-        <!--Point Of Interests-->
+        <!--Points Of Interest-->
         <scene sceneID="Waa-bR-jWO">
             <objects>
                 <tableViewController id="FqN-L4-iZ4" customClass="PointOfInterestsViewController" customModule="Curiocity" customModuleProvider="target" sceneMemberID="viewController">
@@ -280,7 +280,7 @@
                             <outlet property="delegate" destination="FqN-L4-iZ4" id="qK9-yO-jO8"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Point Of Interests" image="list" id="Rhc-5c-nwb"/>
+                    <tabBarItem key="tabBarItem" title="Points Of Interest" image="list" id="Rhc-5c-nwb"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wYV-Xo-bO2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
