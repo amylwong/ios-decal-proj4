@@ -16,38 +16,38 @@ class MapViewController: UIViewController {
     let regionRadius: CLLocationDistance = 1000
     var allPOI = [String:PointOfInterest]()
     var initial : Bool = true
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("MapViewController")
-//        mapView.removeAnnotations(mapView.annotations)
-//        var annotations = [MKPointAnnotation]()
-//        let thirdTab = self.tabBarController?.viewControllers![2] as! PointOfInterestsViewController
-//        thirdTab.tableView!.reloadData()
-//        print("myPOI", thirdTab.myPOI)
-//        allPOI = thirdTab.myPOI
-//        for (name, poiObj) in allPOI {
-//            let annotation = MKPointAnnotation()
-//            annotation.title = name
-//            annotation.coordinate = CLLocationCoordinate2D(latitude: Double(poiObj.lat)!, longitude: Double(poiObj.long)!)
-//            mapView.addAnnotation(annotation)
-//            annotations.append(annotation)
-//            print("annotation added for: \(name)")
-//        }
-//
-//        mapView.showAnnotations(mapView.annotations, animated: true)
+        //        mapView.removeAnnotations(mapView.annotations)
+        //        var annotations = [MKPointAnnotation]()
+        //        let thirdTab = self.tabBarController?.viewControllers![2] as! PointOfInterestsViewController
+        //        thirdTab.tableView!.reloadData()
+        //        print("myPOI", thirdTab.myPOI)
+        //        allPOI = thirdTab.myPOI
+        //        for (name, poiObj) in allPOI {
+        //            let annotation = MKPointAnnotation()
+        //            annotation.title = name
+        //            annotation.coordinate = CLLocationCoordinate2D(latitude: Double(poiObj.lat)!, longitude: Double(poiObj.long)!)
+        //            mapView.addAnnotation(annotation)
+        //            annotations.append(annotation)
+        //            print("annotation added for: \(name)")
+        //        }
+        //
+        //        mapView.showAnnotations(mapView.annotations, animated: true)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-//        self.viewDidLoad()
+        //        self.viewDidLoad()
         print("reload MAPVIEW")
         
-
-//        print(allPOI)
+        
+        //        print(allPOI)
         allPOI.removeAll()
         mapView.removeAnnotations(mapView.annotations)
         var annotations = [MKPointAnnotation]()
@@ -65,10 +65,10 @@ class MapViewController: UIViewController {
         }
         
         mapView.showAnnotations(mapView.annotations, animated: true)
-
+        
         
     }
-
+    
     func mapViewDidFinishRenderingMap(mapView: MKMapView!) {
         // this is where visible maprect should be set
         print("hii")
@@ -83,12 +83,12 @@ class MapViewController: UIViewController {
             regionRadius * 15.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     
 }
 
