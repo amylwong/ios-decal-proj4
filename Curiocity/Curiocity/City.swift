@@ -13,8 +13,6 @@ class City {
     var lat: String
     var long: String
     
-    /* Parses a NSDictionary and creates a photo object. */
-//    init (name: String, lat: String, long: String) {
     init (dict: NSDictionary) {
         lat = dict.valueForKey("ll")!.valueForKey("lat") as! String
         long = dict.valueForKey("ll")!.valueForKey("lat") as! String

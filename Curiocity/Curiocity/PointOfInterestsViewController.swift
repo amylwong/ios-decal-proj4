@@ -21,19 +21,15 @@ class PointOfInterestsViewController: UITableViewController {
         print("POIViewController")
     }
     
-        override func viewWillAppear(animated: Bool) {
-            super.viewWillAppear(animated)
-            print("reload")
-//            print((self.tabBarController?.viewControllers![1] as! SearchViewController).citySelected.name)
-//            self.viewDidLoad()
-            let secondTab = self.tabBarController?.viewControllers![1] as! SearchViewController
-            let city = secondTab.citySelected
-            if city != nil {
-                loadPOI(city, completion: didLoadPOI)
-                print("???")
-            }
-            tableView.reloadData()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        let secondTab = self.tabBarController?.viewControllers![1] as! SearchViewController
+        let city = secondTab.citySelected
+        if city != nil {
+            loadPOI(city, completion: didLoadPOI)
         }
+        tableView.reloadData()
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -41,9 +37,7 @@ class PointOfInterestsViewController: UITableViewController {
     }
     
     func loadPOI(city: City, completion: (([PointOfInterest]) -> Void)!) {
-//        self.cityPOI = []
         var location = city.name
-        print("location", location)
         if location.containsString(" ") {
             location = location.stringByReplacingOccurrencesOfString(",", withString: "")
             location = location.stringByReplacingOccurrencesOfString(" ", withString: "%20")
@@ -86,7 +80,6 @@ class PointOfInterestsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("0")
         if cityPOI.count == 0 {
             let alertController: UIAlertController = UIAlertController(title: "No Points of Interest Found :(", message: "Unfortunately, the API does not have data for this city.", preferredStyle: UIAlertControllerStyle.Alert)
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
@@ -100,7 +93,6 @@ class PointOfInterestsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        tableView.reloadData()
         let cell = tableView.dequeueReusableCellWithIdentifier("POICell", forIndexPath: indexPath)
         let name = cityPOI[indexPath.row].POIName
         cell.textLabel?.text = name
@@ -115,7 +107,6 @@ class PointOfInterestsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        print("1")
         let name = cityPOI[indexPath.row].POIName
         if !(selectedPOI.contains(name)) {
             selectedPOI.append(name)
@@ -124,7 +115,6 @@ class PointOfInterestsViewController: UITableViewController {
             selectedPOI = selectedPOI.filter() {$0 != name}
             myPOI.removeValueForKey(name)
         }
-        print("myPOI", myPOI)
         tableView.reloadData()
         
     }

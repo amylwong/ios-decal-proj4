@@ -38,13 +38,9 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-//        tableView.reloadData()
         print("SearchViewController---viewWillAppear")
         searchController.searchBar.hidden = false
-//        // clear previous search findings
-//        citySearches.removeAll()
         tableView!.reloadData()
-//
     }
     
     func loadCities(searchQuery: String, completion: (([City]) -> Void)!) {
@@ -97,11 +93,11 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-//        print("2")
+
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-//        print("3")
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -118,7 +114,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let alertController: UIAlertController = UIAlertController(title: "City Saved!", message: "Proceed to explore point of interests.", preferredStyle: UIAlertControllerStyle.Alert)
+        let alertController: UIAlertController = UIAlertController(title: "City Saved!", message: "Proceed to explore points of interest.", preferredStyle: UIAlertControllerStyle.Alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
             UIAlertAction in
 //            NSLog("OK Pressed")
@@ -133,7 +129,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         let POITab = self.tabBarController?.viewControllers![2] as! PointOfInterestsViewController
         POITab.cityPOI.removeAll()
         POITab.myPOI.removeAll()
-        print("going to POIViewController from search")
         tabBarController?.selectedIndex = 2
         let savedCitiesTab = self.tabBarController?.viewControllers![0] as! CitiesSavedViewController
         

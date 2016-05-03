@@ -22,29 +22,12 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("MapViewController")
-        //        mapView.removeAnnotations(mapView.annotations)
-        //        var annotations = [MKPointAnnotation]()
-        //        let thirdTab = self.tabBarController?.viewControllers![2] as! PointOfInterestsViewController
-        //        thirdTab.tableView!.reloadData()
-        //        print("myPOI", thirdTab.myPOI)
-        //        allPOI = thirdTab.myPOI
-        //        for (name, poiObj) in allPOI {
-        //            let annotation = MKPointAnnotation()
-        //            annotation.title = name
-        //            annotation.coordinate = CLLocationCoordinate2D(latitude: Double(poiObj.lat)!, longitude: Double(poiObj.long)!)
-        //            mapView.addAnnotation(annotation)
-        //            annotations.append(annotation)
-        //            print("annotation added for: \(name)")
-        //        }
-        //
-        //        mapView.showAnnotations(mapView.annotations, animated: true)
     }
     
     override func viewWillAppear(animated: Bool) {
+        print("MapViewController--viewWillAppear")
         super.viewWillAppear(animated)
-        print("reload MAPVIEW")
         mapView.removeAnnotations(mapView.annotations)
-        print("after remove annotations", mapView.annotations)
         var annotations = [MKPointAnnotation]()
         let thirdTab = self.tabBarController?.viewControllers![2] as! PointOfInterestsViewController
         thirdTab.tableView!.reloadData()
@@ -56,7 +39,6 @@ class MapViewController: UIViewController {
             mapView.addAnnotation(annotation)
             annotations.append(annotation)
         }
-        print("curent annotations", mapView.annotations)
         mapView.showAnnotations(mapView.annotations, animated: true)
         
         
