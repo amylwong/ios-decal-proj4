@@ -20,21 +20,20 @@ class CitiesSavedViewController : UICollectionViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        print("CitiesSavedViewController---viewWillAppear")
         super.viewWillAppear(animated)
         collectionView!.reloadData()
     }
     
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        print("CitiesSavedViewController---didSelectItemAtIndexPath")
         let reuseIdentifier = (indexPath.item == 0) ? "AddCityCell" : "CityCell"
-        print(reuseIdentifier)
         if reuseIdentifier == "AddCityCell" {
             let secondTab = self.tabBarController?.viewControllers![1] as! SearchViewController
             secondTab.citySearches.removeAll()
-            print("hi")
             let POITab = self.tabBarController?.viewControllers![2] as! PointOfInterestsViewController
             POITab.cityPOI.removeAll()
-//            print(tabBarController!.viewControllers)
             tabBarController?.selectedIndex = 1
         } else {
             tabBarController?.selectedIndex = 2

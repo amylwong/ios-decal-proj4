@@ -39,7 +39,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 //        tableView.reloadData()
-        print("viewWillAppear")
+        print("SearchViewController---viewWillAppear")
         searchController.searchBar.hidden = false
 //        // clear previous search findings
 //        citySearches.removeAll()
@@ -117,24 +117,21 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("why isnt alert showing up?")
         let alertController: UIAlertController = UIAlertController(title: "City Saved!", message: "Proceed to explore point of interests.", preferredStyle: UIAlertControllerStyle.Alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
             UIAlertAction in
-            NSLog("OK Pressed")
+//            NSLog("OK Pressed")
             self.searchController.searchBar.text = ""
             
         }
-        
         self.searchController.active = false
-        
         alertController.addAction(okAction)
         presentViewController(alertController, animated: true, completion: nil)
         self.citySelected = citySearches[indexPath.row]
         citySearches.removeAll()
         let POITab = self.tabBarController?.viewControllers![2] as! PointOfInterestsViewController
         POITab.cityPOI.removeAll()
-        print("going to poi from search")
+        print("going to POIViewController from search")
         tabBarController?.selectedIndex = 2
         let savedCitiesTab = self.tabBarController?.viewControllers![0] as! CitiesSavedViewController
         
@@ -144,7 +141,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             }
         }
         savedCitiesTab.cityPlansSaved.append(citySelected)
-        print("&&&",savedCitiesTab.cityPlansSaved)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

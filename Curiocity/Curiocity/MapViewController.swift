@@ -45,11 +45,10 @@ class MapViewController: UIViewController {
         
         //        self.viewDidLoad()
         print("reload MAPVIEW")
-        
-        
-        //        print(allPOI)
+        print("curent annotations", mapView.annotations)
         allPOI.removeAll()
         mapView.removeAnnotations(mapView.annotations)
+        print("after remove annotations", mapView.annotations)
         var annotations = [MKPointAnnotation]()
         let thirdTab = self.tabBarController?.viewControllers![2] as! PointOfInterestsViewController
         thirdTab.tableView!.reloadData()

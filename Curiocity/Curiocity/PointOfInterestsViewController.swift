@@ -19,22 +19,27 @@ class PointOfInterestsViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("POIViewController")
-        let secondTab = self.tabBarController?.viewControllers![1] as! SearchViewController
-        let city = secondTab.citySelected
-        print(city.name)
-        if city != nil {
-            loadPOI(city, completion: didLoadPOI)
-            print("???")
-        }
+//        let secondTab = self.tabBarController?.viewControllers![1] as! SearchViewController
+//        let city = secondTab.citySelected
+//        if city != nil {
+//            loadPOI(city, completion: didLoadPOI)
+//            print("???")
+//        }
     }
     
-//        override func viewWillAppear(animated: Bool) {
-//            super.viewWillAppear(animated)
-//            tableView!.reloadData()
-//            print("reload")
-    //        print((self.tabBarController?.viewControllers![1] as! SearchViewController).citySelected.name)
-    //        self.viewDidLoad()
-//        }
+        override func viewWillAppear(animated: Bool) {
+            super.viewWillAppear(animated)
+            print("reload")
+//            print((self.tabBarController?.viewControllers![1] as! SearchViewController).citySelected.name)
+//            self.viewDidLoad()
+            let secondTab = self.tabBarController?.viewControllers![1] as! SearchViewController
+            let city = secondTab.citySelected
+            if city != nil {
+                loadPOI(city, completion: didLoadPOI)
+                print("???")
+            }
+            tableView.reloadData()
+        }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -42,7 +47,9 @@ class PointOfInterestsViewController: UITableViewController {
     }
     
     func loadPOI(city: City, completion: (([PointOfInterest]) -> Void)!) {
+//        self.cityPOI = []
         var location = city.name
+        print("location", location)
         if location.containsString(" ") {
             location = location.stringByReplacingOccurrencesOfString(",", withString: "")
             location = location.stringByReplacingOccurrencesOfString(" ", withString: "%20")
@@ -58,6 +65,7 @@ class PointOfInterestsViewController: UITableViewController {
                         return
                     }
                     let arr = feedDictionary.valueForKey("activities") as! NSArray
+                    self.cityPOI = []
                     for activity in arr {
                         let activityName = activity.valueForKey("title") as! String
                         let latLng = (activity.valueForKey("latLng") as! String).componentsSeparatedByString(",")
@@ -76,6 +84,7 @@ class PointOfInterestsViewController: UITableViewController {
             }
         })
         task.resume()
+//        tableView.reloadData()
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -96,6 +105,7 @@ class PointOfInterestsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//        tableView.reloadData()
         let cell = tableView.dequeueReusableCellWithIdentifier("POICell", forIndexPath: indexPath)
         let name = cityPOI[indexPath.row].POIName
         cell.textLabel?.text = name
@@ -111,16 +121,12 @@ class PointOfInterestsViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         let name = cityPOI[indexPath.row].POIName
-        print("+",name)
         if !(selectedPOI.contains(name)) {
             selectedPOI.append(name)
-            print("+")
             myPOI[name] = cityPOI[indexPath.row]
-            print(myPOI)
         } else {
             selectedPOI = selectedPOI.filter() {$0 != name}
             myPOI.removeValueForKey(name)
-            
         }
         tableView.reloadData()
         
