@@ -88,6 +88,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         }
         if searchText != "" {
             loadCities(searchText, completion: didLoadCities)
+            self.tableView!.reloadData()
         }
         if searchText == "" {
             self.citySearches = []

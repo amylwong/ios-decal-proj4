@@ -14,7 +14,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     let regionRadius: CLLocationDistance = 1000
-    var allPOI = [String:PointOfInterest]()
+//    var allPOI = [String:PointOfInterest]()
     var initial : Bool = true
     
     
@@ -42,36 +42,24 @@ class MapViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        //        self.viewDidLoad()
         print("reload MAPVIEW")
-        print("curent annotations", mapView.annotations)
-        allPOI.removeAll()
         mapView.removeAnnotations(mapView.annotations)
         print("after remove annotations", mapView.annotations)
         var annotations = [MKPointAnnotation]()
         let thirdTab = self.tabBarController?.viewControllers![2] as! PointOfInterestsViewController
         thirdTab.tableView!.reloadData()
-        print("myPOI", thirdTab.myPOI)
-        allPOI = thirdTab.myPOI
+        let allPOI = thirdTab.myPOI
         for (name, poiObj) in allPOI {
             let annotation = MKPointAnnotation()
             annotation.title = name
             annotation.coordinate = CLLocationCoordinate2D(latitude: Double(poiObj.lat)!, longitude: Double(poiObj.long)!)
             mapView.addAnnotation(annotation)
             annotations.append(annotation)
-            print("annotation added for: \(name)")
         }
-        
+        print("curent annotations", mapView.annotations)
         mapView.showAnnotations(mapView.annotations, animated: true)
         
         
-    }
-    
-    func mapViewDidFinishRenderingMap(mapView: MKMapView!) {
-        // this is where visible maprect should be set
-        print("hii")
-        mapView.showAnnotations(mapView.annotations, animated: true)
     }
     
     func centerMapOnLocation(location: CLLocation) {
