@@ -89,7 +89,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         if searchText != "" {
             loadCities(searchText, completion: didLoadCities)
             self.tableView!.reloadData()
-        }
+        } 
         if searchText == "" {
             self.citySearches = []
             self.tableView!.reloadData()
@@ -132,6 +132,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         citySearches.removeAll()
         let POITab = self.tabBarController?.viewControllers![2] as! PointOfInterestsViewController
         POITab.cityPOI.removeAll()
+        POITab.myPOI.removeAll()
         print("going to POIViewController from search")
         tabBarController?.selectedIndex = 2
         let savedCitiesTab = self.tabBarController?.viewControllers![0] as! CitiesSavedViewController

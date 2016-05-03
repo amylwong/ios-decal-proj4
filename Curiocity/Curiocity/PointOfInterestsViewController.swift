@@ -19,12 +19,6 @@ class PointOfInterestsViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         print("POIViewController")
-//        let secondTab = self.tabBarController?.viewControllers![1] as! SearchViewController
-//        let city = secondTab.citySelected
-//        if city != nil {
-//            loadPOI(city, completion: didLoadPOI)
-//            print("???")
-//        }
     }
     
         override func viewWillAppear(animated: Bool) {
@@ -92,6 +86,7 @@ class PointOfInterestsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("0")
         if cityPOI.count == 0 {
             let alertController: UIAlertController = UIAlertController(title: "No Points of Interest Found :(", message: "Unfortunately, the API does not have data for this city.", preferredStyle: UIAlertControllerStyle.Alert)
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) {
@@ -120,6 +115,7 @@ class PointOfInterestsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        print("1")
         let name = cityPOI[indexPath.row].POIName
         if !(selectedPOI.contains(name)) {
             selectedPOI.append(name)
@@ -128,6 +124,7 @@ class PointOfInterestsViewController: UITableViewController {
             selectedPOI = selectedPOI.filter() {$0 != name}
             myPOI.removeValueForKey(name)
         }
+        print("myPOI", myPOI)
         tableView.reloadData()
         
     }
